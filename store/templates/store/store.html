@@ -1,0 +1,74 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+<div class="bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-0"><a href="{% url 'home' %}">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Store</strong></div>
+    </div>
+  </div>
+</div>
+    <div class="site-section">
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+            <div id="slider-range" class="border-primary"></div>
+            <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+          </div>
+          <div class="col-lg-6">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Category</h3>
+            <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference"
+              data-toggle="dropdown">Category</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+              {% for product in products %}
+              <a class="dropdown-item" href="#">{{ product.category }}</a>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          {% for product in products %}
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            {% if product.in_amo %}
+            <span class="tag">AMO</span>
+            {% else %}
+            <span class="tag">Sale</span>
+            {% endif %}
+
+            <a href="shop-single.html"> <img src="{{ product.images.url }}" alt="Image" class="w-50 p-3" ></a>
+            <h3 class="text-dark"><a href="shop-single.html">{{ product.product_name }}</a></h3>
+                <p class="price"> &mdash; CFA {{ product.price }}</p>
+          </div> 
+
+          {% endfor %}
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    
+
+
+    
+  </div> 
+  {% endblock %}
